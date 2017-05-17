@@ -24,15 +24,6 @@ def writefile(name, text):
     fw.write(text) 
     fw.close()
 
-
-#string = ''
-#row = '%s\t%s\t%s\n'
-#for i in ['udm_lexemes_ADJ.txt', 'udm_lexemes_IMIT.txt', 'udm_lexemes_N.txt', 'udm_lexemes_N_persn.txt', 'udm_lexemes_NRel.txt', 'udm_lexemes_PRO.txt', 'udm_lexemes_unchangeable.txt', 'udm_lexemes_V.txt']:
- #   A = makedict(openfile(i))
- #   for el in A:
-  #      string += row % (el[0], el[1], el[2])
-   # writefile('udmlex.tsv', string)
-
 #alf = 'абвгдежзийклмнопрстуфхцчшыьёюяӧӝӟӵ'
 #trans = list('abvgdežzijklmnoprstufxcčšə')
 #trans.append('ə̂')
@@ -173,22 +164,13 @@ string = ''
 row = '%s\t%s\t%s\n'
 for i in ['ADJ', 'IMIT', 'N', 'N_persn', 'NRel', 'PRO', 'unchangeable', 'V']:
     A += makedict(openfile('udm_lexemes_{}.txt'.format(i)))
-#f = open('udmlexemes.tsv', 'r', encoding = 'utf-8')
-#A = []
-#string = ''
-#row = '%s\t%s\t%s\t%s'
 trans = []
 for el in A:
     a = []
     a.append(convert_input(el[0], 'cyr'))
-    a += el#.append(wordNew)
-  #  a.append(line[0])
-  #  a.append(line[1])
-  #  a.append(line[2])
+    a += el
     trans.append(a)
 for el in trans:
     string += '\t'.join(el)
     string += '\n'
-#writefile('dict_udm.json', json.dumps(d, ensure_ascii=False))
 writefile('udmlex.tsv', string)
-#f.close()
